@@ -1,0 +1,143 @@
+import WEBGL from 'three/examples/jsm/capabilities/WebGL.js';
+import * as THREE from 'three';
+ 
+if ( WEBGL.isWebGL2Available() ) {
+    // WebGL is available
+    console.log("WebGL 2 is available.");
+ 
+    const scene = new THREE.Scene();
+ 
+    const ambient = new THREE.AmbientLight(0xffffff, 1.0); // luz ambiental más fuerte
+    scene.add(ambient);
+ 
+    const renderer = new THREE.WebGLRenderer( {antialias: true} );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+ 
+    const camera = new THREE.PerspectiveCamera ( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+    camera.position.set( 0, 0, 500 );
+ 
+    const sphereGeometry = new THREE.BufferGeometry();
+    const sphereRadius = 100;
+    const widthSegments = 32;
+    const heightSegments = 16;
+       
+    const sphereVertices = [];
+    const sphereIndices = [];
+    const sphereUVs = [];
+       
+    for (let stack = 0; stack <= heightSegments; stack++) {
+        const phi = stack * Math.PI / heightSegments;
+        const sinPhi = Math.sin(phi);
+        const cosPhi = Math.cos(phi);
+   
+        for (let slice = 0; slice <= widthSegments; slice++) {
+            const theta = slice * 2 * Math.PI / widthSegments;
+            const sinTheta = Math.sin(theta);
+            const cosTheta = Math.cos(theta);
+     
+            sphereVertices.push(sphereRadius * sinPhi * cosTheta, sphereRadius * cosPhi, sphereRadius * sinPhi * sinTheta);
+           
+            // Agregar coordenadas UV (invertidas en V para orientación correcta)
+            const u = slice / widthSegments;
+            const v = 1.0 - (stack / heightSegments);
+            sphereUVs.push(u, v);
+        }
+    }
+     
+    // Conectamos los vértices de cada fila con los de la siguiente
+    for (let stack = 0; stack < heightSegments; stack++){
+        for (let slice = 0; slice < widthSegments; slice++){
+            const a = stack * (widthSegments + 1) + slice;
+            const b = a + widthSegments + 1;
+     
+            sphereIndices.push(a, b, a + 1);
+            sphereIndices.push(b, b + 1, a + 1);
+        }
+    }
+       
+    sphereGeometry.setIndex(sphereIndices);
+    sphereGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(sphereVertices), 3));
+    sphereGeometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(sphereUVs), 2));
+    sphereGeometry.computeVertexNormals();
+       
+    const mapUrl = "../textures/mapa.png";   // The file used as texture
+    const textureLoader = new THREE.TextureLoader( );  // The object used to load textures
+    const map = textureLoader.load( mapUrl, ( loaded ) => { renderer.render( scene, camera ); } );
+    const sphereMaterial = new THREE.MeshPhongMaterial( { map: map, side: THREE.DoubleSide, shininess: 80 } );
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphere.position.set(0, 0, 0);
+   
+    const atmosphereGeometry = new THREE.SphereGeometry(105, 32, 16);
+   
+    const atmosphereUrl = "../textures/atmosfera.png";
+    const atmosphereMap = textureLoader.load(atmosphereUrl);
+   
+    const atmosphereMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFFFF, map: atmosphereMap, transparent: true } );
+   
+    const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+    atmosphere.position.set(0, 0, 0);
+   
+    const earthGroup = new THREE.Object3D();
+   
+    earthGroup.add(sphere);
+    earthGroup.add(atmosphere);
+   
+    earthGroup.rotation.z = 0.36;
+ 
+ 
+    scene.add(earthGroup);
+   
+    const moonRadius = sphereRadius * 0.27;
+    const moonGeometry = new THREE.SphereGeometry(moonRadius, 32, 16);
+   
+    const moonMapUrl = "../textures/luna.png";
+    const moonMap = textureLoader.load( moonMapUrl, ( loaded ) => { renderer.render( scene, camera ); } );
+    const moonMaterial = new THREE.MeshPhongMaterial( { map: moonMap, color: 0xffffff, shininess: 5 } );
+   
+    const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+   
+    const distance = 300;
+   
+    moon.position.set( distance, 0, 0 );
+   
+    moon.rotation.y = Math.PI;
+   
+    const moonGroup = new THREE.Object3D( );
+    moonGroup.add( moon );
+   
+    moonGroup.rotation.x = 0.089;
+   
+    scene.add(moonGroup);
+ 
+    // Animation setup
+    const clock = new THREE.Clock();
+
+    function animate() {
+        const delta = clock.getDelta(); // Elapsed time in seconds
+
+        // UPDATE THE SCENE ACCORDING TO THE ELAPSED TIME
+        // Earth rotation
+        const rotation = (delta * Math.PI * 2) / 24;
+        sphere.rotation.y += rotation;
+        atmosphere.rotation.y += rotation * 0.95;
+
+        // Moon orbital rotation (completes orbit every 28 days)
+        const orbitalRotation = (delta * Math.PI * 2) / 28;
+        moonGroup.rotation.y += orbitalRotation;
+
+        // Render the scene
+        renderer.render(scene, camera);
+
+        // Request the browser to execute the animation-rendering loop
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+ 
+    window.addEventListener( 'resize', ( ) => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix( );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }, false );
+}

@@ -1,6 +1,5 @@
 import WEBGL from 'three/examples/jsm/capabilities/WebGL.js';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
  
 if ( WEBGL.isWebGL2Available() ) {
     // WebGL is available
@@ -12,30 +11,12 @@ if ( WEBGL.isWebGL2Available() ) {
     const ambient = new THREE.AmbientLight(0xffffff, 1.0); // luz ambiental más fuerte
     scene.add(ambient);
  
-    // const directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
-    // directionalLight.position.set(300, 200, 200);
-    // directionalLight.target.position.set(0, 0, 0);
-    // scene.add(directionalLight);
-    // scene.add(directionalLight.target);
- 
-    const pointLight = new THREE.PointLight(0xffffff, 100000, 5000);
-    pointLight.position.set(100, 0, 150);
-    scene.add(pointLight);
- 
-    const pointLightHelper = new THREE.PointLightHelper(pointLight, 10);
-    scene.add(pointLightHelper);
- 
     const renderer = new THREE.WebGLRenderer( {antialias: true} );
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
  
     const camera = new THREE.PerspectiveCamera ( 45, window.innerWidth / window.innerHeight, 1, 4000 );
     camera.position.set( 0, 0, 500 );
- 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.autoRotate = false;
  
     const sphereGeometry = new THREE.BufferGeometry();
     const sphereRadius = 100;
@@ -129,13 +110,6 @@ if ( WEBGL.isWebGL2Available() ) {
     moonGroup.rotation.x = 0.089;
    
     scene.add(moonGroup);
-   
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    animate();
  
     window.addEventListener( 'resize', ( ) => {
         camera.aspect = window.innerWidth / window.innerHeight;

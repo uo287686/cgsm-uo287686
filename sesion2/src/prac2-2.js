@@ -1,33 +1,11 @@
 import WEBGL from 'three/examples/jsm/capabilities/WebGL.js';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 if ( WEBGL.isWebGL2Available() ) {
     // WebGL is available
     console.log("WebGL 2 is available.");
 
     const scene = new THREE.Scene();
-
-    /*// Iluminación lateral para la esfera (simulando el sol con DirectionalLight)
-    const ambient = new THREE.AmbientLight(0xffffff, 1.0); // luz ambiental más fuerte
-    scene.add(ambient);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
-    directionalLight.position.set(300, 200, 200);
-    directionalLight.target.position.set(0, 0, 0);
-    scene.add(directionalLight);
-    scene.add(directionalLight.target);
-
-    const pointLight = new THREE.PointLight(0xffffff, 1.5, 500);
-    pointLight.position.set(100, 150, 150);
-    scene.add(pointLight);
-
-    const pointLightHelper = new THREE.PointLightHelper(pointLight, 10);
-    scene.add(pointLightHelper);*/
-
-    const pointLight = new THREE.PointLight(0xffffff, 2.0, 800);
-    pointLight.position.set(250, 150, 200);
-    scene.add(pointLight);
     
     // Luz ambiental para mejor visualización general
     const ambient = new THREE.AmbientLight(0xffffff, 0.6);
@@ -41,12 +19,6 @@ if ( WEBGL.isWebGL2Available() ) {
     camera.position.set( 0, 0, 300 );
 
     const geometry = new THREE.BoxGeometry( 100, 100, 100 );
-
-    // Crear controles de órbita para rotar la esfera
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.autoRotate = false;
 
     const sphereGeometry = new THREE.BufferGeometry();
     const sphereRadius = 100;
@@ -119,15 +91,7 @@ if ( WEBGL.isWebGL2Available() ) {
     atmosphere.position.set(0, 0, 0);
     
     scene.add(atmosphere);
-    
-    // Loop de animación continua
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    animate();
-
+ 
     window.addEventListener( 'resize', ( ) => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix( );

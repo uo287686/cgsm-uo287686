@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2025-2026)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Óscar Suárez Santamarina</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>2</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>Esta práctica consiste en la creación de varias escenas 3D utilizando la biblioteca Three.js, donde se implementan 
+                    conceptos de geometría, texturas, iluminación y animación. Se parte de una caja básica y se llega a una escena completa 
+                    con la Tierra animada, la atmósfera, la Luna en órbita, el Sol con un shader GLSL personalizado y la Estación Espacial 
+                    Internacional cargada desde un modelo Collada.</p>
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En el primer ejercicio se parte del código de la sesión anterior y se le aplica una textura, por lo que no se encontró ninguna dificultad.
+                </p>
+                <iframe class="container" src="./prac2-1.html">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En este ejercicio se construye una esfera terrestre utilizando BufferGeometry. También se utilizó código de la sesión anterior
+                    para la esfera, por lo que no se encontró mucha dificultad.
+                </p>
+                <iframe class="container" src="./prac2-2.html">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>Para este ejercicio se construye otra esfera y se le aplica una textura que simula la atmósfera. Lo importante es que el material 
+                    ha de ser MeshLambertMaterial con transparent: true, para que se vea correctamente. En este ejercicio, tampoco se encontró
+                    mucha dificultad.
+                </p>
+                <iframe class="container" src="./prac2-3.html">
+                    Escena 3
+                </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En este ejercicio se introduce la inclinación del eje terrestre aplicando rotación tanto a la esfera como al grupo que la contiene.
+                    La esfera y la atmósfera se agrupan en un en earthGroup, lo que permite aplicar la transformación sin necesidad de repetirla en cada 
+                    geometría individualmente.
+                </p>
+                <iframe class="container" src="./prac2-4.html">
+                    Escena 4
+                </iframe>
+            <h2>Ejercicio 5</h2>
+                <p>
+                    Para este ejercicio, se añade la luna, donde la más importante a destacar, además de su textura, es que su radio es proporcional
+                    al de la tierra. Destacar que la luna se añade a un grupo cuyo origen coincide con el de la tierra.
+                    La mayor dificultad fue conseguir que el tamaño de la luna y su distancia a la tierra fueran proporcionales. 
+                </p>
+                <iframe class="container" src="./prac2-5.html">
+                    Escena 5
+                </iframe>
+            <h2>Ejercicio 6</h2>
+                <p>
+                    En este caso se introduce la rotación de la Tierra usando THREE.Clock. Como el código de la función animate() se daba en el enunciado, 
+                    no se encontró ninguna dificultad destacable.
+                </p>
+                <iframe class="container" src="./prac2-6.html">
+                    Escena 6
+                </iframe>
+            <h2>Ejercicio 7</h2>
+                <p>
+                    En este ejercicio se añade la animación orbital de la luna alrededor de la Tierra. La clave está en que la rotación la hace el grupo que contiene a la luna,
+                    por lo que al rotar el grupo, rota la propia luna sin perder, por ejemplo, la inclinación orbital que tenía el grupo. La mayor dificultad fue conseguir que 
+                    la rotación fuera la correcta, ya que al principio intenté hacer la rotación directamente sobre la luna, lo que no funcionaba correctamente.
+                </p>
+                <iframe class="container" src="./prac2-7.html">
+                    Escena 7
+                </iframe>
+            <h2>Ejercicio 8</h2>
+                <p>
+                   Lo más detacable de este ejercicio es la creación del shader para el sol. Para la correcta visualización se cambia la cámara y se desplazan tanto a la Tierra 
+                   como a la luna. El sol se hace 5 veces mayor que la tierra y, además, se le añade la animación de rotación. También es importante añadir que recibe 2 texturas 
+                   como uniforms y se mezclan. Además, se añadieron unos controlers para poder mover la cámara y poder verificar más fácil, por ejemplo, que la luna sigue rotando.
+                   La principal dificultad fue el rescalado general que hubo que hacer y el tema de la iluminación, ya que para que simulara lo que podría ser la iluminación del 
+                   sol, se añadió una luz direccional que apuntaba hacia la tierra, pero también había que ajustar la intensidad de la luz ambiental para que 
+                   se viera todo correctamente. 
+                </p>
+                <iframe class="container" src="./prac2-8.html">
+                    Escena 8
+                </iframe>
+            <h2>Ejercicio 9</h2>
+                <p>
+                    Este último ejercicio es idéntico al anterior salvo por la incorporación de la Estación Espacial Internacional, que se carga desde un modelo Collada. Para que se 
+                    viera correctamente, hubo que ajustar su escala y posición, además de añadirle una rotación. La mayor dificultad fue conseguir que el modelo se viera correctamente, 
+                    ya que al principio no se veía nada, lo que se solucionó ajustando la escala y la posición.
+                </p>
+                <iframe class="container" src="./prac2-9.html">
+                    Escena 9
+                </iframe>
+        </div>
+    </body>
+</html>
