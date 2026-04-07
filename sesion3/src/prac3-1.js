@@ -29,12 +29,10 @@ if ( WEBGL.isWebGL2Available() ) {
             map: textureLoader.load( "textures/brick.png" ),
             bumpMap: textureLoader.load( "textures/brick-map.png" )
         } );
-    const box = new THREE.Mesh( geometry, material );
-    //box.rotation.set( Math.PI / 5, Math.PI / 5, 0 );    
+    const box = new THREE.Mesh( geometry, material );   
 
     scene.add( box );
 
-    // Animation loop - Animar la escena para girar el cubo sobre el eje Y
     function animate() {
         requestAnimationFrame( animate );
         

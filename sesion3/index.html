@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2025-2026)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Óscar Suárez Santamarina</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>3</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>Esta práctica consiste en la creación de varias escenas 3D utilizando la biblioteca Three.js. Se parte de un cubo básico al que se 
+                    le aplica una textura avanzada, a diferencia de la práctica anterior. Posteriormente, se desarrolla un ejemplo similar en el que se 
+                    emplean vídeos como textura en lugar de imágenes estáticas. Por último, se incorporan controles para la interacción con la escena, 
+                    permitiendo tanto la modificación de parámetros (como el bumpScale) como el control del movimiento en la escena, como en el caso de 
+                    la última implementación.</p>
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En el primer ejercicio se parte del código de un ejercicio de la primera práctica. En él hay un cubo al que se le aplica una textura avanzada, 
+                    por lo que se utilizan dos imágenes en lugar de una. No se encontró dificultado porque, además de partir de código anterior, en el enunciado
+                    se da todo lo necesario para hacerlo sin problemas.
+                </p>
+                <iframe class="container" src="./prac3-1.html">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En este segundo ejercicio se introduce el uso de vídeos como texturas. Para ello, se crea un elemento canvas que se actualiza con el 
+                    contenido del vídeo en cada frame, y se utiliza este canvas como textura para un cubo. La principal dificultad fue entender cómo sincronizar 
+                    la actualización del canvas con la reproducción del vídeo, pero una vez comprendido el proceso, la implementación fue relativamente sencilla.
+                </p>
+                <iframe class="container" src="./prac3-2.html">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>Para este ejercicio se construye otra esfera y se le aplica una textura que simula la atmósfera. Lo importante es que el material 
+                    ha de ser MeshLambertMaterial con transparent: true, para que se vea correctamente. En este ejercicio, tampoco se encontró
+                    mucha dificultad.
+                </p>
+                <iframe class="container" src="./prac3-3.html">
+                    Escena 3
+                </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En este ejercicio se introduce la inclinación del eje terrestre aplicando rotación tanto a la esfera como al grupo que la contiene.
+                    La esfera y la atmósfera se agrupan en un en earthGroup, lo que permite aplicar la transformación sin necesidad de repetirla en cada 
+                    geometría individualmente.
+                </p>
+                <iframe class="container" src="./prac3-4.html">
+                    Escena 4
+                </iframe>
+        </div>
+    </body>
+</html>
