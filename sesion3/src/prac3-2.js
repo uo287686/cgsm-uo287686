@@ -59,7 +59,7 @@
             }
             
             //Puse que girara rápido para ver que se hacía bien.
-            plane.rotation.y += 0.05;
+            plane.rotation.y += 0.007;
             
             renderer.render( scene, camera );
         }

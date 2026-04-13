@@ -46,18 +46,21 @@
                     Escena 2
                 </iframe>
             <h2>Ejercicio 3</h2>
-                <p>Para este ejercicio se construye otra esfera y se le aplica una textura que simula la atmósfera. Lo importante es que el material 
-                    ha de ser MeshLambertMaterial con transparent: true, para que se vea correctamente. En este ejercicio, tampoco se encontró
-                    mucha dificultad.
+                <p>Para este ejercicio se añadió una interfaz gráfica para modificar en tiempo real el parámetro bumpScale del material. Para ello se creó un objeto
+                    controlData enlazado al control y en la función de animación se actualiza el valor del material con el valor del control. La principal dificultad
+                    fue saber si estaba bien hecho, ya que por culpa de la iluminación, en un principio no se apreciaban los cambios, por lo que hubo que cambiar y
+                    poner una directionalLight para que se pudieran apreciar.
                 </p>
                 <iframe class="container" src="./prac3-3.html">
                     Escena 3
                 </iframe>
             <h2>Ejercicio 4</h2>
                 <p>
-                    En este ejercicio se introduce la inclinación del eje terrestre aplicando rotación tanto a la esfera como al grupo que la contiene.
-                    La esfera y la atmósfera se agrupan en un en earthGroup, lo que permite aplicar la transformación sin necesidad de repetirla en cada 
-                    geometría individualmente.
+                    Por último, es este ejercicio se reó una escena en primera persona usando Three.js, añadiendo una rejilla como suelo y dos cubos con materiales 
+                    diferentes en una de sus caras. Se incorporaron controles de cámara con FirstPersonControls para permitir el movimiento por la escena, y se utilizó 
+                    un reloj para actualizar correctamente la navegación en cada frame. En este caso hubo un par de dificultades, donde la primera fue la iluminación, donde
+                    hubo que cambiarla para que se pudieran apreciar bien las texturas. La segunda dificultad fue el ajuste tanto de los objetos como de la cámara, ya que
+                    hubo que ajustar la posición de ambas para que se pudiera visualizar de forma adecuada.
                 </p>
                 <iframe class="container" src="./prac3-4.html">
                     Escena 4
