@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2025-2026)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Óscar Suárez Santamarina</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>4</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>Esta práctica consiste en la creación de varias escenas 3D, centradas en aspectos avanzados 
+                    como el sonido posicional 3D, la selección e interacción con objetos de la escena, y la 
+                    detección de colisiones. Se parte de una escena con dos cajas texturizadas sobre un grid a 
+                    la que se van añadiendo nuevas funcionalidades: fuentes de audio posicional vinculadas a los 
+                    objetos, selección de objetos mediante raycasting, interacción con teclado para activar/desactivar 
+                    sonidos con retroalimentación visual, y finalmente un sistema de detección de colisiones para 
+                    evitar que la cámara atraviese los cubos.</p>
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En el primer ejercicio se añaden dos fuentes de sonido a las cajas de la escena. 
+                    Para ello se crea un objeto AudioListener vinculado a la cámara y dos objetos PositionalAudio 
+                    asociados a cada caja usando AudioLoader. De esta forma el sonido se atenúa o acentúa según 
+                    la distancia de la cámara a cada fuente. No se encontraron dificultades, ya que 
+                    el enunciado proporciona el código necesario.
+                </p>
+                <iframe class="container" src="./prac4-1.html">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En este ejercicio se añade la selección de objetos mediante un Raycaster. En cada frame del 
+                    bucle de renderizado se traza un rayo desde la posición del ratón a través de la cámara para 
+                    detectar qué objeto de la escena está siendo apuntado, almacenándolo en la variable 
+                    intersectedObject. La principal dificultad fue asegurarse de asignar correctamente la propiedad 
+                    name a cada objeto para poder identificarlos en la consola y en los pasos posteriores.
+                </p>
+                <iframe class="container" src="./prac4-2.html">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>
+                    En este ejercicio se añade la interacción con los objetos seleccionados: al pulsar la barra 
+                    espaciadora sobre una caja se alterna entre la reproducción y la pausa de su sonido, y 
+                    simultáneamente se cambia la textura de su primera cara para ofrecer retroalimentación visual 
+                    del estado activo o inactivo. La principal dificultad fue gestionar correctamente los materiales 
+                    de cada caja de forma independiente, ya que ambas compartían el mismo array de materiales 
+                    inicialmente, lo que requirió precargar las tres texturas y asignarlas de forma dinámica.
+                </p>
+                <iframe class="container" src="./prac4-3.html">
+                    Escena 3
+                </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En el último ejercicio se añade detección de colisiones para impedir que la cámara atraviese 
+                    los cubos. Se lanzan rayos en múltiples direcciones desde la posición de la cámara transformados 
+                    al espacio mundial mediante applyQuaternion, y si alguno detecta un obstáculo a menos de la 
+                    distancia máxima definida, se deshace el movimiento llamando a controls.update() con delta 
+                    negativo. La principal dificultad fue que al principio no se transformaban las direcciones 
+                    según la orientación de la cámara, lo que hacía que las colisiones no funcionasen 
+                    correctamente al moverse en cualquier dirección.
+                </p>
+                <iframe class="container" src="./prac4-4.html">
+                    Escena 4
+                </iframe>
+        </div>
+    </body>
+</html>
