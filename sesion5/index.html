@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2025-2026)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Óscar Suárez Santamarina</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>5</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>
+                    Esta práctica consiste en el desarrollo de varias escenas 3D utilizando la biblioteca Three.js, incorporando además técnicas de distribución 
+                    de vídeo mediante MPEG-DASH con la librería Dash.js. En primer lugar, se comprueba la correcta reproducción de distintos manifiestos DASH en 
+                    un elemento de video. Posteriormente, se adapta una escena previa para emplear un vídeo servido mediante MPEG-DASH como textura dinámica 
+                    sobre un plano dentro de la escena 3D. Finalmente, se actualiza continuamente la textura en tiempo real durante la animación, permitiendo 
+                    visualizar el vídeo integrado en el entorno 3D.
+                </p>
+            <h2>Preguntas</h2>
+                <h3>¿Cuántas codificaciones de audio distintas puede utilizar el cliente para adaptarse a condiciones cambiantes de la red?</h3>
+                <p>
+                    En ambos archivos solo se incluye una única codificación de audio por manifiesto. Por lo tanto, el cliente solo puede utilizar una codificación 
+                    de audio distinta para adaptarse a condiciones cambiantes de la red, lo que limita su capacidad de adaptación en caso de fluctuaciones en la calidad de la conexión. 
+                </p>
+                <h3>¿Y de vídeo?</h3>
+                <p>
+                    En el primer manifiesto, el de MultiResMPEG2.mpd, se puede elegir entre 3 representaciones con diferentes calidades y anchis de banda.
+                    En cambio, en el segundo manifiesto, el de MultiResH264.mpd, se pueden elegir entre 4 representaciones disponibles para adaptarse a la red.
+                </p>
+                <h3>¿Cuántas resoluciones de vídeo distintas puede usar el cliente? Indica cuáles.</h3>
+                <p>
+                    Con el primer manifiesto, el de MultiResMPEG2.mpd, el cliente puede usar 3 resoluciones distintas: 512x288, 768x432 y 1280x720. 
+                    Con el segundo manifiesto, el de MultiResH264.mpd, el cliente puede usar una única resolución: 854x480.
+                </p>    
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En el primer ejercicio se trabaja con la reproducción de vídeo mediante DASH, 
+                    utilizando el fichero smi-dash.html. Para ello se configura un reproductor 
+                    capaz de cargar el contenido multimedia desde un manifiesto y reproducirlo 
+                    en el navegador adaptando la calidad según las condiciones de red. No se 
+                    encontraron dificultades relevantes, ya que el material proporcionado en la 
+                    práctica incluye la estructura base necesaria para realizar la implementación.
+                </p>
+                <img src="capturas/CGSM-Prac5-Imagen1.png" alt="Ejercicio 1">
+                <iframe class="container" src="./prac5-1.html">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En este segundo ejercicio se parte del código de una sesión anterior, concretamente 
+                    de la escena de la sesión 3, y se adapta para incorporar un vídeo servido mediante 
+                    MPEG-DASH como textura dinámica en un plano dentro de la escena 3D. No se encontraron 
+                    dificultades relevantes, ya que el material proporcionado en la práctica incluye la 
+                    estructura base necesaria para realizar la implementación.
+                </p>
+                <img src="capturas/CGSM-Prac5-Imagen2.png" alt="Ejercicio 2">
+                <iframe class="container" src="./prac5-2.html">
+                    Escena 2
+                </iframe>
+        </div>
+    </body>
+</html>

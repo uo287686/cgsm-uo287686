@@ -6,11 +6,9 @@
         // WebGL is available
         console.log("WebGL 2 is available.");
 
-        const video = document.getElementById( 'player' );
-
         const url = "http://localhost:60080/trailer.mpd";
-        const player = dashjs.MediaPlayer().create();
-        player.initialize(document.querySelector("#player"), url, true);
+        const video = document.querySelector("#player");
+        //video.style.display = "block";
 
         const image = document.createElement( 'canvas' );
         image.width = 480;  // Video width
@@ -29,8 +27,8 @@
             overlay.remove();
 
             // Do stuff
-            const video = document.getElementById('player');
-            video.play();
+            const player = dashjs.MediaPlayer().create();
+            player.initialize(video, url, true);
         }
 
         const scene = new THREE.Scene();
@@ -47,7 +45,7 @@
         const plane = new THREE.Mesh( wall, material );
 
         if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
-            imageContext.drawImage( video, 0, 0 );
+            imageContext.drawImage( video, 0, 0, image.width, image.height );
             if ( texture ) texture.needsUpdate = true;
         }
 
