@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2025-2026)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Óscar Suárez Santamarina</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>6</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>
+                    EEsta práctica consiste en el desarrollo de varias aplicaciones web utilizando la API WebRTC,
+                    que permite integrar comunicación en tiempo real directamente en el navegador sin necesidad
+                    de software adicional. En primer lugar, se captura el flujo de vídeo de la cámara web mediante
+                    getUserMedia y se muestra en un elemento <code>video</code>. A continuación, se amplía la 
+                    aplicación para permitir la descarga como imagen PNG utilizando un elemento <code>canvas</code>. 
+                    Después, se implementa una llamada de vídeo local entre dos extremos usando RTCPeerConnection. 
+                    Finalmente, se integra WebRTC con WebGL adaptando una escena Three.js de una sesión anterior 
+                    para utilizar el flujo de vídeo de la cámara como textura dinámica.
+                </p>
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En el primer ejercicio se que accede a la web del dispositivo y muestra el flujo de vídeo 
+                    capturado en un elemento video con reproducción automática. Para ello se define un constraints 
+                    indicando que solo se necesita vídeo (sin audio), y el flujo obtenido se asigna directamente a 
+                    la propiedad srcObject del elemento. No se encontraron dificultades durante la implementación.
+                </p>
+                <iframe class="container" src="./prac6-1.html">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En el segundo ejercicio se amplía la página anterior. Se incorpora un elemento canvas oculto y 
+                    un enlace con el atributo download que, al pulsarse, copia el fotograma actual del vídeo sobre 
+                    el canvas mediante drawImage y genera una URL de descarga en formato PNG usando toDataURL. No 
+                    se encontraron dificultades durante la implementación.
+                </p>
+                <iframe class="container" src="./prac6-2.html">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>
+                    En el tercer ejercicio se implementa una llamada de vídeo local entre dos extremos usando 
+                    RTCPeerConnection. Se configuran los parámetros de conexión y se gestionan los eventos 
+                    necesarios para establecer la comunicación. No se encontraron dificultades durante la 
+                    implementación.
+                </p>
+                <iframe class="container" src="./prac6-3.html">
+                    Escena 3
+                </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En el cuarto ejercicio se integra WebRTC con WebGL adaptando una escena Three.js de una sesión 
+                    anterior para utilizar el flujo de vídeo de la cámara como textura dinámica. Se crea una textura 
+                    de vídeo a partir del elemento <code>video</code> y se actualiza en cada frame para reflejar el 
+                    contenido en tiempo real. No se encontraron dificultades durante la implementación.
+                </p>
+                <iframe class="container" src="./prac6-4.html">
+                    Escena 4
+                </iframe>
+        </div>
+    </body>
+</html>
